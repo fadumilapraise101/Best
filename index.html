@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoundHub - Music Player & Community</title>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="logo">
+                <i class="fa-solid fa-compact-disc spin-logo"></i>
+                <span>SoundHub</span>
+            </div>
+            <nav class="nav-links">
+                <button class="nav-btn active" data-tab="library"><i class="fa-solid fa-list-ul"></i> My Library</button>
+                <button class="nav-btn" data-tab="community"><i class="fa-solid fa-globe"></i> Community Tracks</button>
+            </nav>
+            <div class="upload-section">
+                <label for="audio-upload" class="upload-btn">
+                    <i class="fa-solid fa-cloud-arrow-up"></i> Upload Track
+                </label>
+                <input type="file" id="audio-upload" accept="audio/*" multiple hidden>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="top-header">
+                <h1 id="tab-title">My Library</h1>
+                <div class="search-bar">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="search-input" placeholder="Search tracks or artists...">
+                </div>
+            </header>
+
+            <!-- Library View -->
+            <section id="library-view" class="view-section active">
+                <div class="track-list" id="library-list">
+                    <!-- Dynamic Tracks Will Appear Here -->
+                </div>
+            </section>
+
+            <!-- Community Tracks View -->
+            <section id="community-view" class="view-section">
+                <p class="section-desc">Discover and download music uploaded by other creators (Royalty-free public domain tracks).</p>
+                <div class="track-list" id="community-list">
+                    <!-- Community Tracks Will Appear Here -->
+                </div>
+            </section>
+        </main>
+
+        <!-- Player Footer -->
+        <footer class="player-bar">
+            <!-- Audio Spectrum Visualizer -->
+            <canvas id="visualizer"></canvas>
+
+            <!-- Track Info -->
+            <div class="now-playing">
+                <div class="track-cover" id="current-cover">
+                    <i class="fa-solid fa-music"></i>
+                </div>
+                <div class="track-details">
+                    <span class="track-title" id="current-title">No Track Selected</span>
+                    <span class="track-artist" id="current-artist">Select a song to play</span>
+                </div>
+            </div>
+
+            <!-- Player Controls -->
+            <div class="player-controls">
+                <div class="control-buttons">
+                    <button class="control-btn" id="btn-shuffle" title="Shuffle"><i class="fa-solid fa-shuffle"></i></button>
+                    <button class="control-btn" id="btn-prev" title="Previous"><i class="fa-solid fa-backward-step"></i></button>
+                    <button class="control-btn play-btn" id="btn-play" title="Play/Pause"><i class="fa-solid fa-play"></i></button>
+                    <button class="control-btn" id="btn-next" title="Next"><i class="fa-solid fa-forward-step"></i></button>
+                    <button class="control-btn" id="btn-repeat" title="Repeat Mode"><i class="fa-solid fa-repeat"></i></button>
+                </div>
+                <div class="playback-bar">
+                    <span id="current-time">0:00</span>
+                    <input type="range" id="seek-bar" value="0" min="0" max="100">
+                    <span id="total-duration">0:00</span>
+                </div>
+            </div>
+
+            <!-- Volume & Download -->
+            <div class="extra-controls">
+                <a id="btn-download" class="control-btn" download title="Download Current Track">
+                    <i class="fa-solid fa-download"></i>
+                </a>
+                <div class="volume-container">
+                    <i class="fa-solid fa-volume-high" id="volume-icon"></i>
+                    <input type="range" id="volume-bar" min="0" max="1" step="0.01" value="0.8">
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Hidden HTML5 Audio Element -->
+    <audio id="audio-player"></audio>
+
+    <!-- JS Metadata Parser Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsmediatags/3.9.5/jsmediatags.min.js"></script>
+    <!-- Custom JavaScript -->
+    <script src="app.js"></script>
+</body>
+</html>
